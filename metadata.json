@@ -1,0 +1,6 @@
+{
+  "name": "MMA Deal Hub",
+  "description": "Select and order discounted second-hand MMA gym contracts in Central and South Singapore for CBD office workers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
