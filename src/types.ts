@@ -13,7 +13,7 @@ export interface GymContract {
 
 export interface PlacedOrder {
   referenceNumber: string;
-  queuePosition: number;
+  queuePosition?: number;
   customerName: string;
   customerPhone: string;
   contract: GymContract;

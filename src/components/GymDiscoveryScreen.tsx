@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ArrowUpDown, Filter, Sparkles, Building2 } from 'lucide-react';
+import { ArrowUpDown, Filter, Building2, HelpCircle } from 'lucide-react';
 import { GymContract, SortOption, DurationFilterOption } from '../types';
 import { GymCard } from './GymCard';
 
@@ -53,6 +53,37 @@ export const GymDiscoveryScreen: React.FC<GymDiscoveryScreenProps> = ({
         <p className="text-sm text-slate-300 mt-1.5 leading-relaxed max-w-xl">
           Explore illustrative contract-transfer scenarios designed for CBD office workers. Gym names, prices, locations and availability shown below are fictional prototype data.
         </p>
+      </section>
+
+      {/* How It Works Explanation */}
+      <section
+        id="how-it-works-guide"
+        className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3"
+      >
+        <div className="flex items-center gap-2 text-slate-900 font-bold text-sm sm:text-base">
+          <HelpCircle className="w-4 h-4 text-amber-600 shrink-0" />
+          <span>How Contract Takeover Works</span>
+        </div>
+        <ol className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-600">
+          <li className="bg-slate-50 p-3 rounded-xl border border-slate-100 flex flex-col justify-between">
+            <div>
+              <span className="font-bold text-amber-700 block mb-1">1. Browse & Compare</span>
+              Browse second-hand MMA gym contracts available for takeover, comparing monthly prices, remaining duration (3–14 months), and CBD/South locations.
+            </div>
+          </li>
+          <li className="bg-slate-50 p-3 rounded-xl border border-slate-100 flex flex-col justify-between">
+            <div>
+              <span className="font-bold text-amber-700 block mb-1">2. Preview Takeover Flow</span>
+              Selecting a contract lets you preview the step-by-step reservation and takeover flow without committing or paying.
+            </div>
+          </li>
+          <li className="bg-slate-50 p-3 rounded-xl border border-slate-100 flex flex-col justify-between">
+            <div>
+              <span className="font-bold text-amber-700 block mb-1">3. Prototype Context</span>
+              This prototype uses illustrative listings. In a real marketplace, transfer approval and any transfer fees depend directly on the gym and seller.
+            </div>
+          </li>
+        </ol>
       </section>
 
       {/* Control Bar: Sort and Filter */}
