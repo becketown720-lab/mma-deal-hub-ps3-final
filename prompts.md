@@ -727,3 +727,60 @@ I stopped requesting further product changes after restoring the production endp
 
 
 
+
+
+--problem set 4--
+
+
+
+
+
+
+I am revising my existing MMA Deal Hub app for MGMT6110 Problem Set 4 based only on peer heuristic-evaluation evidence.
+Do not redesign the app or change unrelated functionality.
+Before writing any code, briefly challenge each proposed repair: say whether it actually solves the peer finding, whether it belongs on the screen or system side, and whether it could create a new usability problem. Then implement only the repairs below.
+Repair 1 — Phone input validation
+Peer finding: the phone field accepts letters and only reports the problem after submission.
+Heuristic 5 — Error Prevention, severity 2.
+Required outcome:
+Treat the field as a phone-number field.
+On mobile, use an appropriate phone/numeric keyboard.
+Allow sensible phone characters such as digits, spaces and "+".
+Do not allow an obviously invalid alphabetic phone number to proceed.
+Give a clear inline message if the value is invalid.
+Repair 2 — Review before confirming the demo reservation
+Peer finding: submitting the form immediately creates the demo reservation, with no review or easy way back.
+Heuristic 3 — User Control and Freedom, severity 3.
+Required outcome:
+After entering name and phone, show a review screen before the reservation is confirmed.
+Show the selected gym/contract, name and phone number.
+Provide an Edit/Back action.
+Provide a clearly separate Confirm Demo Reservation action.
+Only after confirmation should the existing success/result screen appear.
+Repair 3 — Make the illustrative/demo status unambiguous
+Peer finding: “Illustrative position: #3” is unclear, and another reviewer expected the form to create a real booking/contact.
+Heuristic 2 — Match Between the System and the Real World.
+Required outcome:
+Replace ambiguous wording such as “Illustrative position: #3” with plain language.
+Clearly state that this is a demonstration and does not create a real reservation, payment or gym contact.
+Preserve the purpose of the prototype rather than pretending there is a live transaction backend.
+Repair 4 — Add a concise “How it works” explanation
+Peer finding: a first-time visitor cannot tell what taking over a second-hand gym contract involves.
+Heuristic 10 — Help and Documentation, severity 3.
+Add a short, visually lightweight “How it works” section near the listings. It should explain:
+users browse second-hand MMA gym contracts available for takeover;
+they compare price, remaining duration and location;
+selecting a contract previews the takeover/reservation flow;
+this prototype uses illustrative listings;
+in a real marketplace, transfer approval or fees would depend on the gym and seller.
+Keep it concise. Do not add a long FAQ.
+Constraints
+Preserve the current overall visual design.
+Preserve the weather/API functionality.
+Preserve Disqus and the privacy notice.
+Do not add a fake backend, fake live inventory, fake transaction, or fabricated timestamps.
+Do not add gym/area search in this revision.
+Change nothing unrelated to these four repairs.
+After implementing, tell me exactly how to manually test each repair on the live site.
+
+
