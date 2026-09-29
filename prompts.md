@@ -729,13 +729,12 @@ I stopped requesting further product changes after restoring the production endp
 
 
 
+
+
+## Problem Set 4
 --problem set 4--
 
-### Problem Set 4
-
-
-
-
+Prompt1:
 I am revising my existing MMA Deal Hub app for MGMT6110 Problem Set 4 based only on peer heuristic-evaluation evidence.
 Do not redesign the app or change unrelated functionality.
 Before writing any code, briefly challenge each proposed repair: say whether it actually solves the peer finding, whether it belongs on the screen or system side, and whether it could create a new usability problem. Then implement only the repairs below.
