@@ -841,6 +841,26 @@ Locate the "How Contract Takeover Works" section right above the sort and filter
 Expected Result:
 The section is concise and scannable into 3 clear steps:
 Browse & Compare: Explains taking over second-hand contracts and comparing monthly fees, remaining durations (3–14 months), and CBD/South locations.
+
+## My decision after the challenge
+
+I accepted all four proposed repairs because they directly traced to peer findings and could be implemented without redesigning the product.
+
+For the phone field, I accepted the agent's warning that overly strict validation could reject legitimate formats, so the revised field allows digits and common phone-number characters such as "+", spaces, hyphens and parentheses while rejecting alphabetic input.
+
+For the reservation review step, I accepted the warning that going back to edit could accidentally erase the user's details. The revised flow therefore preserves the entered name and phone number when the user returns from the review screen.
+
+For the demo-status wording, I kept the prototype framing but made it explicit that no real reservation, payment, queue or gym contact is created.
+
+For the "How it works" section, I kept the explanation short so that it gives first-time users context without pushing the listings too far down the page.
+
+I did not add gym/area search in this revision. The current prototype contains only six illustrative listings visible on one page, so I treated search as a useful future requirement for a larger live inventory rather than a priority for this revision.
+
+No blind-arbiter exchange was used in this revision. I had no finding in the "found by both, rated differently" row, and I did not re-rate any peer finding to severity 0.
+
+### Post-implementation check
+
+I manually walked the revised live flow and checked the four repairs. I also chose not to use Google AI Studio's generic automatic "Fix" action when the interface displayed "1 error running the code", because the error could not be inspected, the application continued to function normally, and the subsequent GitHub/Vercel deployment succeeded.
 Preview Takeover Flow: Explains how selecting a contract previews the reservation and review steps without committing or paying.
 Prototype Context: Explicitly clarifies that the listings are illustrative, and that in a real marketplace transfer approvals and fees depend directly on the gym and seller.
 All four repairs for Problem Set 4 have been successfully implemented and verified with zero compilation or lint errors. The live development environment is fully updated and ready for manual testing.
