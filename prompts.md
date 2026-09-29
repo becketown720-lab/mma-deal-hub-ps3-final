@@ -782,4 +782,65 @@ Do not add gym/area search in this revision.
 Change nothing unrelated to these four repairs.
 After implementing, tell me exactly how to manually test each repair on the live site.
 
-
+AI studio reply:
+Pre-Implementation Challenge of the Proposed Repairs
+Repair 1 — Phone Input Validation
+Does it solve the peer finding? Yes. By using semantic phone field attributes (type="tel", inputMode="tel"), mobile browsers automatically summon the numeric dialer keypad. Real-time validation checks for illegal alphabetic characters and ensures a minimum digit length, rendering immediate inline feedback and preventing form progression.
+Screen vs. System side: Belongs on the screen side (client-side form validation and input attributes) to give immediate, keystroke-level feedback and mobile keyboard control before submission. (In a production system with persistence, a system-side API validator would also mirror these rules).
+Could it create a new usability problem? Yes, if the validation is overly strict (e.g., rejecting international dial codes with +, dashes, or spaces like +65 9123 4567). The implementation permits +, spaces, hyphens, and parentheses, only disallowing alphabetic letters and numbers with fewer than 8 digits.
+Repair 2 — Review Before Confirming the Demo Reservation
+Does it solve the peer finding? Yes. Introducing an intermediate "Review Demo Reservation" step gives users control and freedom (Heuristic 3) to inspect their details and the selected gym contract before making a commitment.
+Screen vs. System side: Belongs on the screen side (client UI workflow state machine) managing the transition between input, review, and final demonstration result.
+Could it create a new usability problem? Yes, if going back to edit resets the form fields, forcing the user to retype their details. To prevent this, the input values (name, phone) are preserved in state when clicking "Edit / Back", allowing seamless corrections.
+Repair 3 — Make the Illustrative/Demo Status Unambiguous
+Does it solve the peer finding? Yes. Replacing pseudo-queue jargon like "Illustrative position: #3" with plain-language status indicators clarifies that no queue was joined, no payment was taken, and no gym contact will be made.
+Screen vs. System side: Belongs on the screen side (copy, microcopy, and visual framing of prototype feedback).
+Could it create a new usability problem? Yes, if the disclaimer is so prominent that it destroys the prototype's ability to demonstrate what a real confirmation workflow looks like, or if it still implies background automation. The implementation pairs a realistic confirmation layout with clear, unambiguous labels: "Demonstration Only — No reservation was placed and no queue was joined. No gym or coordinator will contact you."
+Repair 4 — Add a Concise “How It Works” Explanation
+Does it solve the peer finding? Yes. First-time visitors unfamiliar with contract takeovers get immediate orientation right next to the listings, explaining how second-hand transfers work.
+Screen vs. System side: Belongs on the screen side (discovery page information architecture).
+Could it create a new usability problem? Yes, if it is too verbose, pushes the listings too far down the page, or looks like advertising copy. The implementation uses a lightweight, 3-card scannable overview that covers all 5 required points concisely without adding a heavy FAQ.
+Implementation Summary
+src/components/OrderConfirmationScreen.tsx:
+Repair 1 (Phone validation): Configured input with type="tel", inputMode="tel", and autoComplete="tel". Added validation logic checking for alphabetic characters (/[a-zA-Z]/), invalid symbols, and minimum 8-digit length. Displayed inline error messages under the field with red border highlights.
+Repair 2 (Review step): Added a 3-step state model (form → review → confirmed). The review screen displays the selected gym contract (name, fee, duration, location) and entered customer details, with an "Edit / Back" button and a separate "Confirm Demo Reservation" button.
+Repair 3 (Unambiguous demo status): Removed "Illustrative position: #3". Replaced it with "Prototype Status: Demonstration Only" and explanatory text stating that no queue was joined, no reservation was made, and no gym or coordinator will contact the user.
+src/components/GymDiscoveryScreen.tsx:
+Repair 4 (“How it works” section): Added a lightweight, 3-card overview section #how-it-works-guide explaining contract takeovers, comparison points (price, duration, location), demo walkthrough preview, and real-world transfer approval/fee conditions.
+src/types.ts:
+Made queuePosition optional on PlacedOrder to decouple the contract order state from synthetic queue numbers.
+How to Manually Test Each Repair on the Live Site
+Test Repair 1 — Phone Input Validation
+Click "Select Contract" on any gym listing to enter the reservation flow.
+In the Test Phone Number field, type letters (e.g. testphone or 9123abc).
+Click "Review Reservation Details" (or change focus).
+Expected Result: An inline error in red appears directly below the phone input stating "Letters are not allowed. Please enter digits, spaces, hyphens, or '+'." The input is outlined in red, and the form does not advance.
+Try entering fewer than 8 digits (e.g. 9123).
+Expected Result: An inline error states "Phone number must contain at least 8 digits."
+Now enter a valid phone number format (e.g. +65 9123 4567 or 9123 4567) and enter a name (e.g. Tan Wei Ming).
+Expected Result: The error clears, and clicking "Review Reservation Details" advances to the review screen. On mobile devices, focusing the phone field opens the numeric telephone keypad.
+Test Repair 2 — Review Screen Before Confirmation
+Fill in valid name and phone details and click "Review Reservation Details".
+Expected Result: You are taken to the "Review Demo Reservation" screen (Step 2 of 2).
+The selected gym name, monthly fee, duration, and location are shown.
+The name and phone number you just entered are displayed.
+A distinct "Edit / Back" button and a separate "Confirm Demo Reservation" button are present.
+Click "Edit / Back" (or the top "Back to Edit Contact Info" button).
+Expected Result: You return to the form, and your previously typed name and phone number remain intact without being lost.
+Click "Review Reservation Details" again, then click "Confirm Demo Reservation".
+Expected Result: Only upon clicking this confirmation button does the final demonstration result screen appear.
+Test Repair 3 — Unambiguous Demo Status
+On the confirmation result screen:
+Expected Result: Notice the absence of "Illustrative position: #3".
+In its place, the status card clearly states "Prototype Status: Demonstration Only" with the explanation: "No reservation was placed and no queue was joined. No gym or coordinator will contact you."
+The reference card is labeled "Illustrative Reference" with the explanation: "Generated locally in your browser. Not stored on any server."
+The banner explicitly clarifies: "This is an illustrative demonstration. No real reservation, payment, or gym contact has been made."
+Test Repair 4 — "How It Works" Section
+Click "Browse More Examples" or return to the main discovery page.
+Locate the "How Contract Takeover Works" section right above the sort and filter controls.
+Expected Result:
+The section is concise and scannable into 3 clear steps:
+Browse & Compare: Explains taking over second-hand contracts and comparing monthly fees, remaining durations (3–14 months), and CBD/South locations.
+Preview Takeover Flow: Explains how selecting a contract previews the reservation and review steps without committing or paying.
+Prototype Context: Explicitly clarifies that the listings are illustrative, and that in a real marketplace transfer approvals and fees depend directly on the gym and seller.
+All four repairs for Problem Set 4 have been successfully implemented and verified with zero compilation or lint errors. The live development environment is fully updated and ready for manual testing.
